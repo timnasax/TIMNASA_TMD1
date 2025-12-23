@@ -46,7 +46,7 @@ const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./dat
 const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./data/banGroup");
 const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./data/onlyAdmin");
 //const //{loadCmd}=require("/fredi/mesfonctions")
-let { reagir } = require(__dirname + "/timnasa/app");
+let { reagir } = require(__dirname + "/fez/app");
 var session = conf.session.replace(/TIMNASA-TMD;;;=>/g,"");
 const prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
