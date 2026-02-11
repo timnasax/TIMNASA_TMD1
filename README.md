@@ -22,13 +22,13 @@
 # 🛡️ TIMNASA-XMD WHATSAPP BOT
 
 <p align="center">
-  <img src="https://telegra.ph/file/dc3a328616ffc9c2b9f5f.jpg" alt="TIMNASA-XMD Logo" width="200">
+  <img src="https://files.catbox.moe/jmyv02.jpg" alt="TIMNASA-XMD Logo" width="200">
 </p>
 
 <p align="center">
-  <a href="https://github.com/timnasax/TIMNASA-XMD/stargazers"><img src="https://img.shields.io/github/stars/timnasax/TIMNASA-XMD?style=for-the-badge&color=yellow" alt="Stars"></a>
-  <a href="https://github.com/timnasax/TIMNASA-XMD/network/members"><img src="https://img.shields.io/github/forks/timnasax/TIMNASA-XMD?style=for-the-badge&color=blue" alt="Forks"></a>
-  <a href="https://github.com/timnasax/TIMNASA-XMD/watchers"><img src="https://img.shields.io/github/watchers/timnasax/TIMNASA-XMD?style=for-the-badge&color=green" alt="Watchers"></a>
+  <a href="https://github.com/timnasax/TIMNASA_TMD1/stargazers"><img src="https://img.shields.io/github/stars/timnasax/TIMNASA_TMD1?style=for-the-badge&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/timnasax/TIMNASA_TMD1/network/members"><img src="https://img.shields.io/github/forks/timnasax/TIMNASA_TMD1?style=for-the-badge&color=blue" alt="Forks"></a>
+  <a href="https://github.com/timnasax/TIMNASA_TMD1/watchers"><img src="https://img.shields.io/github/watchers/timnasax/TIMNASA_TMD1?style=for-the-badge&color=green" alt="Watchers"></a>
 </p>
 
 ---
@@ -46,7 +46,7 @@ Kabla ya ku-deploy, unahitaji kupata Session ID kwa kuunganisha namba yako:
 
 ### 2. Fork & Star
 Hakikisha una-**Fork** repository hii na kuweka **Star** ⭐️ ili kupata updates mpya na sapoti.
-👉 [**FORK REPOSITORY HAPA**](https://github.com/timnasax/TIMNASA-XMD/fork)
+👉 [**FORK REPOSITORY HAPA**](https://github.com/timnasax/TIMNASA_TMD1/fork)
 
 ---
 
