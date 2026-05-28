@@ -46,7 +46,11 @@ const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./dat
 const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./data/banGroup");
 const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./data/onlyAdmin");
 //const //{loadCmd}=require("/fredi/mesfonctions")
-let { reagir } = require(__dirname + "/fez/app");
+
+// MAREKEBISHO: Tumezima faili lililokuwa halipatikani na kuweka placeholder ili bot isicrash
+// let { reagir } = require(__dirname + "/fez/app");
+let reagir = async () => {}; 
+
 var session = conf.session.replace(/TIMNASA-TMD;;;=>/g,"");
 const prefixe = conf.PREFIXE;
 const more = String.fromCharCode(8206)
@@ -71,6 +75,7 @@ async function authentification() {
         return;
     }
 }
+
 authentification();
 const store = (0, baileys_1.makeInMemoryStore)({
     logger: pino().child({ level: "silent", stream: "store" }),
