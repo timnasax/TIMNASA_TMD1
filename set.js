@@ -12,17 +12,17 @@ const DATABASE_URL = process.env.DATABASE_URL === undefined
 module.exports = {
     // Session na Prefix
     session: process.env.SESSION_ID || 'zokk',
-    PREFIXE: process.env.PREFIX || "+",
+    PREFIXE: process.env.PREFIX || ".",
     
     // Habari za Mmiliki (Owner)
-    OWNER_NAME: process.env.OWNER_NAME || "chugastan",
-    NUMERO_OWNER: process.env.NUMERO_OWNER || "255622286792",
-    NOM_OWNER: process.env.OWNER_NAME || "chugastan", // Imetumika kwenye index.js
+    OWNER_NAME: process.env.OWNER_NAME || "Timothy",
+    NUMERO_OWNER: process.env.NUMERO_OWNER || "255784766591",
+    NOM_OWNER: process.env.OWNER_NAME || "Timothy", // Imetumika kwenye index.js
     
     // Mipangilio ya Bot
-    BOT_NAME: process.env.BOT_NAME || 'MATELEE TMD',
-    URL: process.env.BOT_MENU_LINKS || 'https://files.catbox.moe/ejm45q.jpg',
-    MODE: process.env.PUBLIC_MODE || "no",
+    BOT_NAME: process.env.BOT_NAME || 'TIMNASA_TMD1',
+    URL: process.env.BOT_MENU_LINKS || 'https://raw.githubusercontent.com/timnasax/All-updates/main/img_timoth/IMG_3280.jpeg',
+    MODE: process.env.PUBLIC_MODE || "yes",
     PM_PERMIT: process.env.PM_PERMIT || 'no',
     DP: process.env.STARTING_BOT_MESSAGE || "yes",
     
